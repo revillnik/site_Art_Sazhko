@@ -1,0 +1,12 @@
+{% if cat_slug == 'all_cat' %}
+<div style="color:#f44336">Все категории</div>
+{% else %}
+<li><a href="{% url "shop" %}">Все категории</a></li>
+{% endif %}
+{% for item in categories %}
+{% if item.slug == cat_slug %}
+<div style="color:#f44336">{{item.name}}</div>
+{% else %}
+<li><a href="{{ item.get_absolute_url }}">{{item.name}}</a></li>
+{% endif %}
+{% endfor %}

@@ -1,0 +1,132 @@
+{% extends 'shopping_site/base.html' %}
+{% load static %}
+{% block content %}
+            <!--== Start Hero Area Wrapper ==-->
+
+            <section class="hero-two-slider-area position-relative">
+                        <div class="swiper-slide hero-two-slide-item">
+                            <div class="container">
+                                <div class="row align-items-center position-relative">
+                                    <div class="col-12 col-md-6">
+                                        <div class="hero-two-slide-content">
+                                            <div class="hero-two-slide-text-img"><img src="{% static "images/slider/text-light.webp" %}" width="427" height="232" alt="Image"></div>
+                                            <h1 class="hero-two-slide-title">ART SAZHKO</h1>
+                                            <p class="hero-two-slide-desc">Jewelry workshop of own production</p>
+                                            <div class="hero-two-slide-meta">
+                                                <a class="btn btn-border-primary" href="{% url 'shop' %}">BUY NOW</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="hero-two-slide-thumb">
+                                            <img src="{% static "images/pngwing.com.png" %}" width="600" height="690" alt="Image">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </section>
+            <!--== End Hero Area Wrapper ==-->
+
+            <!--== Start Product Banner Area Wrapper ==-->
+            <!--== End Product Banner Area Wrapper ==-->
+
+            <!--== Start Product Area Wrapper ==-->
+            <section class="section-space">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title">
+                                <h2 class="title">Our Products</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-n4 mb-sm-n10 g-3 g-sm-6">
+							{% for item in all_products %}
+                        <div class="col-6 col-lg-4 mb-4 mb-sm-9">
+                            <!--== Start Product Item ==-->
+                            <div class="product-item product-st2-item">
+                                <div class="product-thumb">
+                                    <a class="d-block" href="{{item.get_absolute_url}}">
+													{% if item.photo %}
+                                        <img src= "{{item.photo.url}}" width="370" height="450" alt="Image-HasTech">
+													{% else %}
+													 <img src= "{% static "images/shop/1.webp" %}" width="370" height="450" alt="Image-HasTech">
+													{% endif %}
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <h4 class="title"><a href="{{item.get_absolute_url}}">{{item.name}}</a></h4>
+                                    <div class="prices">
+													Цена:
+                                        <span class="price">{{item.price}}</span>
+                                    </div>
+                                    <div class="product-action">
+                                        <button type="button" class="product-action-btn action-btn-cart" data-bs-toggle="modal" data-bs-target="#action-CartAddModal">
+                                            <a href="{{item.get_absolute_url}}">Подробнее</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--== End prPduct Item ==-->					 
+                        </div>
+							{% endfor %}
+                    </div>
+					      <div class="col-12">
+									{% if page_obj.has_other_pages %}
+                            <ul class="pagination justify-content-center me-auto ms-auto mt-5 mb-0 mb-sm-10">
+                                <li class="page-item">
+											{% if page_obj.has_previous %}
+                                    <a class="page-link previous" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                        <span class="fa fa-chevron-left" aria-hidden="true"></span>
+                                    </a>
+											{% else %}
+                                    <a class="page-link previous" aria-label="Previous">
+                                        <span class="fa fa-chevron-left" aria-hidden="true"></span>
+                                    </a>											
+											{% endif %}
+                                </li>
+										  {% for page in paginator.page_range %}
+										  {% if page_obj.number == page %}
+                                <li class="page-item"><a class="page-link"><div style="color:#f44336">{{page}}</div></a></li>
+										  {% elif page >= page_obj.number|add:-1 and page <= page_obj.number|add:1 %}
+                                <li class="page-item"><a class="page-link" href="?page={{ page }}">{{page}}</a></li>
+										  {% endif %}
+        								  {% endfor %}
+										   <li class="page-item">
+											{% if page_obj.has_next %}
+                                    <a class="page-link next" href="?page={{ page_obj.next_page_number }}" aria-label="next">
+                                        <span class="fa fa-chevron-right" aria-hidden="true"></span>
+                                    </a>
+											{% else %}
+                                    <a class="page-link Next" aria-label="next">
+                                        <span class="fa fa-chevron-right" aria-hidden="true"></span>
+                                    </a>											
+											{% endif %}
+                                </li>
+                            </ul>
+									 {% endif %}
+                        </div>
+                </div>
+            </section>
+            <!--== End Product Area Wrapper ==-->
+            <!--== Start News Letter Area Wrapper ==-->
+            <section class="section-space pt-0">
+                <div class="container">
+                    <div class="newsletter-content-wrap">
+                        <div class="newsletter-content">
+                            <div class="section-title mb-0">
+                                <h2 class="title">Join with us</h2>
+                            </div>
+                        </div>
+                        <div class="newsletter-form">
+                           <form action={% url 'email_home' %} method ="POST">
+										 {% csrf_token %}
+                              <input name = 'email' class="form-control" placeholder="Введите свой номер телефона для связи">
+                              <button class="btn-submit" onclick="alert('Заявка отправлена')" type="submit"><i class="fa fa-paper-plane"></i></button>
+                           </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--== End News Letter Area Wrapper ==-->
+{% endblock %}
