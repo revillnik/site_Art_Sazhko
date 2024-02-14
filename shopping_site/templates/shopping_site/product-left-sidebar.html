@@ -16,9 +16,9 @@
                                         <div class="product-thumb">
                                             <a class="d-block" href="{{item.get_absolute_url}}">
 															{% if item.photo %}
-                                                <img src="{{item.photo.url}}" width="370" height="450" alt="Image-HasTech">
+                                                <img src="{{item.photo.url}}" class='my-img-shop' width="370" height="450" alt="Image-HasTech">
 															{% else %}
-																<img src="{% static "images/shop/1.webp" %}" width="370" height="450" alt="Image-HasTech">
+																<img src="{% static "images/shop/1.webp" %}" class='my-img-shop' width="370" height="450" alt="Image-HasTech">
 															{% endif %}
                                             </a>
                                         </div>

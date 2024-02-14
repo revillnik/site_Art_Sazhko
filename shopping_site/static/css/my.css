@@ -1,0 +1,33 @@
+.my-img{
+	height:450px;
+	width:370px; 
+	object-fit:cover;
+}
+
+.title-text{
+	font-size:19px !important;
+}
+
+.my-footer{
+	background:#fcebed;
+}
+
+.my-img-shop{
+	height:370px;
+	width:370px; 
+	object-fit:cover;
+}
+
+.my-wrapper{
+	 display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.my-main-content{
+	flex:1 1 100%;
+}
+.swiper-img{
+	height:600px;
+	width:500px; 
+	object-fit:cover;
+}

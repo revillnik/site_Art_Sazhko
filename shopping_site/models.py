@@ -17,13 +17,13 @@ class goods(models.Model):
         default=None,
         blank=True,
         null=True,
-        verbose_name="Главное фото на главной странице",
+        verbose_name="Главное фото на главной странице 370x450",
     )
     photos = models.ManyToManyField(
         "images",
         blank=True,
         related_name="photos",
-        verbose_name="Фотографии в карточке товара",
+        verbose_name="Фотографии в карточке товара 570x693",
     )
     cat = models.ForeignKey(
         "category",

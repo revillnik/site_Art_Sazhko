@@ -34,6 +34,7 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="{% static "css/style.min.css" %}">
+	 <link rel="stylesheet" href="{% static "css/my.css" %}">
 
 </head>
 
@@ -42,7 +43,7 @@
 <body>
 
     <!--== Wrapper Start ==-->
-    <div class="wrapper">
+    <div class="wrapper my-wrapper">
 
         <!--== Start Header Wrapper ==-->
         <header class="header-area sticky-header">
@@ -58,9 +59,9 @@
                     <div class="col-lg-6 d-none d-lg-block">
                         <div class="header-navigation">
                             <ul class="main-nav justify-content-start">
-                                <li><a href="{% url 'home' %}">Home</a></li>
-										  <li><a href="{% url 'shop' %}">Shop</a></li>
-                                <li><a href="{% url 'contact' %}">Contact</a></li>
+                                <li><a class='title-text' href="{% url 'home' %}">Home</a></li>
+										  <li><a class='title-text' href="{% url 'shop' %}">Shop</a></li>
+                                <li><a class='title-text' href="{% url 'contact' %}">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -69,7 +70,7 @@
 				
         </header>
         <!--== End Header Wrapper ==-->
-<main class="main-content">
+<main class="main-content my-main-content">
 <!--== content ==-->  
 {% block content %}
 {% endblock %}
@@ -77,7 +78,7 @@
 </main>
 		</body>
         <!--== Start Footer Area Wrapper ==-->
-        <footer class="footer-area">
+        <footer class="footer-area my-footer">
             <!--== Start Footer Bottom ==-->
             <div class="footer-bottom">
                 <div class="container pt-0 pb-0">

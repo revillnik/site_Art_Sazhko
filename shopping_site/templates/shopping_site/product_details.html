@@ -13,13 +13,13 @@
                               	<div class="swiper-wrapper">
 								         {% for i in product.photos.all %}
                                  	<div class="swiper-slide">
-                                 	<img src="{{i.photo.url}}" width="550" height="600">	
+                                 	<img src="{{i.photo.url}}" class='swiper-img'width="550" height="600">	
                                     </div>
 								         {% endfor %}
                                  </div>
                               </div>
 										{% else %}
-											<img src={% static "images/shop/product-details/1.webp" %} width="570" height="693">
+											<img src={% static "images/shop/product-details/1.webp" %} class='swiper-img' width="570" height="693">
 										{% endif %}
                             </div>
                         </div>
