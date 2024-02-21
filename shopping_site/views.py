@@ -140,3 +140,6 @@ def contact_with_us(request):
             ["revillnik@mail.ru"],
         )
     return redirect(request.META["HTTP_REFERER"], permanent=True)
+ 
+def register(request):
+    return render(request, 'shopping_site/register.html')

@@ -13,4 +13,6 @@ urlpatterns = [
     path("email_home/", views.email_home, name="email_home"),
     path("contact_with_us/", views.contact_with_us, name="contact_with_us"),
     path("contact/", views.Contact.as_view(), name="contact"),
+    path("register/", views.register, name="register"),
+    
 ]
