@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_extensions",
     "shopping_site.apps.ShoppingSiteConfig",
-    "django.contrib.sites",
 ]
 
 MIDDLEWARE = [

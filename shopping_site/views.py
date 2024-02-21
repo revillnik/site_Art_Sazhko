@@ -14,7 +14,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator
-
+from .forms import RegisterUserForm
 
 class SiteHome(ListView):
     template_name = "shopping_site/index.html"
@@ -140,6 +140,9 @@ def contact_with_us(request):
             ["revillnik@mail.ru"],
         )
     return redirect(request.META["HTTP_REFERER"], permanent=True)
- 
-def register(request):
-    return render(request, 'shopping_site/register.html')
+
+
+class RegisterUser(CreateView):
+    form_class = RegisterUserForm
+    template_name = "shopping_site/register.html"
+    success_url = "home"
