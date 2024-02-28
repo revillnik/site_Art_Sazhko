@@ -121,8 +121,8 @@
                         <div class="newsletter-form">
                            <form action={% url 'email_home' %} method ="POST">
 										 {% csrf_token %}
-                              <input name = 'email' class="form-control" placeholder="Введите свой номер телефона для связи">
-                              <button class="btn-submit" onclick="alert('Заявка отправлена')" type="submit"><i class="fa fa-paper-plane"></i></button>
+                              <input name = 'email' class="form-control" placeholder="Введите свою почту для связи">
+                              <button class="btn-submit" onclick="alert('Подтвердите заявку')" type="submit"><i class="fa fa-paper-plane"></i></button>
                            </form>
                         </div>
                     </div>

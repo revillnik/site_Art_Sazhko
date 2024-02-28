@@ -16,6 +16,7 @@ from django.template.loader import render_to_string
 from django.core.paginator import Paginator
 from .forms import RegisterUserForm, LoginUserForm
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib import messages
 
 
 class SiteHome(ListView):
@@ -156,5 +157,3 @@ class LoginUser(LoginView):
 
     def get_success_url(self):
         return reverse_lazy("home")
-
-   
