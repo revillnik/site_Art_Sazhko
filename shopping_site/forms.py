@@ -35,3 +35,9 @@ class RegisterUserForm(UserCreationForm):
         if get_user_model().objects.filter(email=email).exists():
             raise forms.ValidationError("Такой E-mail уже существует!")
         return email
+
+
+class LoginUserForm(AuthenticationForm):
+    class Meta:
+        model = get_user_model()
+        fields = ["username", "password"]

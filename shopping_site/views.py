@@ -14,7 +14,9 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator
-from .forms import RegisterUserForm
+from .forms import RegisterUserForm, LoginUserForm
+from django.contrib.auth.views import LoginView, LogoutView
+
 
 class SiteHome(ListView):
     template_name = "shopping_site/index.html"
@@ -145,4 +147,14 @@ def contact_with_us(request):
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = "shopping_site/register.html"
-    success_url = "home"
+    success_url = "login"
+
+
+class LoginUser(LoginView):
+    form_class = LoginUserForm
+    template_name = "shopping_site/login.html"
+
+    def get_success_url(self):
+        return reverse_lazy("home")
+
+   
