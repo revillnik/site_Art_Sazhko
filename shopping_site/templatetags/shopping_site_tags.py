@@ -8,5 +8,5 @@ register = template.Library()
 
 @register.inclusion_tag("shopping_site/list_categories.html")
 def show_categories(cat_slug):
-    categories = category.objects.all()
+    categories = category.objects.annotate(count=Count('cats')).filter(count__gt=0)
     return {"categories": categories, "cat_slug": cat_slug}

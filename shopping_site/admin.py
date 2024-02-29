@@ -28,14 +28,16 @@ class goodsAdmin(admin.ModelAdmin):
         "name",
         "slug",
         "post_photo",
+        "cat"
     )
-    list_display_links = ("id", "name")
+    list_display_links = ("id", "slug")
     ordering = [
         "name",
     ]
     filter_horizontal = ["photos"]
     prepopulated_fields = {"slug": ("name",)}
     list_per_page = 12
+    list_editable = ["cat", "name"]
 
     @admin.display(description="Изображение")
     def post_photo(self, goods: goods):
@@ -46,7 +48,7 @@ class goodsAdmin(admin.ModelAdmin):
 
 @admin.register(images)
 class imagesAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "photo", "post_image")
+    list_display = ("id", "name", "photo", "post_image",)
     list_display_links = ("id", "name", "photo")
     list_per_page = 12
     fields = [
