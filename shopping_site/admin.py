@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import goods, images, category
+from .models import goods, images, category, comments
 from django.utils.safestring import mark_safe
 
 
@@ -80,3 +80,7 @@ class categoryAdmin(admin.ModelAdmin):
     search_fields = [
         "name__iregex",
     ]
+
+@admin.register(comments)
+class commentsAdmin(admin.ModelAdmin):
+    list_display = ("good", "state", "comment")

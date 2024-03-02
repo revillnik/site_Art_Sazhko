@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.safestring import mark_safe
+from django.contrib.auth.models import User
 
 
 class goods(models.Model):
@@ -79,3 +80,22 @@ class category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class comments(models.Model):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        verbose_name="Пользователь",
+        related_name="comment_users",
+        null=True
+    )
+    good = models.ForeignKey(
+        "goods",
+        verbose_name="Товар",
+        related_name="comment_good",
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+    state = models.IntegerField(verbose_name="Оценка", null=True)
+    comment = models.TextField(blank=True, verbose_name="Комментарий")
