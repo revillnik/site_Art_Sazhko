@@ -41,3 +41,4 @@ class LoginUserForm(AuthenticationForm):
     class Meta:
         model = get_user_model()
         fields = ["username", "password"]
+

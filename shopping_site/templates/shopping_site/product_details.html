@@ -67,14 +67,14 @@
 											<!--== Start Reviews Content Item ==-->
 											{% for item in product.comment_good.all %}
                                     <div class="product-review-item mb-0">
-                                        <div class="product-review-top">
-                                            <div class="product-review-content">
-                                                <span class="product-review-name">{{item.user}}</span>
+                                        <div class="product-review-top" style="flex-direction: row-reverse">
+                                            <div class="product-review-content" >
+                                                <span class="product-review-name">{% if item.username %}{{item.username}} {% else %} Покупатель {% endif %}</span>
                                                 <div class="product-review-icon">
 																	{% state_comment item.state as states %}
 																	{% for item in states %}
 																	{% if item != 0 %}
-                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star" ></i>
 																	{% else %}
                                                     <i class="fa fa-star-o"></i>
 																	{% endif %}
@@ -83,7 +83,7 @@
 															
                                             </div>
                                         </div>
-                                        <p class="desc">{{item.comment}}</p>
+                                        <p style="word-break:break-all;" class="desc">{{item.comment}}</p>
                                     </div>
                                     <!--== End Reviews Content Item ==-->
 												<p></p>
@@ -109,39 +109,26 @@
                             <div class="product-reviews-form-wrap">
                                 <h4 class="product-form-title">Оставьте комментарий</h4>
                                 <div class="product-reviews-form">
-                                    <form action="#">
+                                    <form method="POST">
+													{% csrf_token %}
 													 <div class="form-input-item">
-                                            <input class="form-control" type="text" placeholder="Пользователь">
+                                            <input class="form-control" style="font-size: 18px" type="text" maxlength="20" placeholder="Пользователь" name="username" {% if user.is_authenticated %} value={{user}} {% endif %}>
+														  <input class="form-control" type="hidden" placeholder="Пользователь" name="user" {% if user.is_authenticated %} value={{user.id}} {% endif %}>
+														  <input class="form-control" type="hidden" placeholder="Пользователь" name="product"  value={{product.id}}>
                                         </div>
                                         <div class="form-input-item">
-                                            <textarea class="form-control" placeholder="Текст комментария"></textarea>
+                                            <textarea class="form-control" style="font-size: 18px; word-break:break-all;" placeholder="Текст комментария" name="comment"></textarea>
                                         </div>
                                         <div class="form-input-item">
                                             <div class="form-ratings-item">
-                                                <select id="product-review-form-rating-select" class="select-ratings">
+                                                <select id="product-review-form-rating-select" style="font-size: 16px" style ="border-radius: 10px" class="select-ratings" name="state">
                                                     <option value="1">01</option>
                                                     <option value="2">02</option>
                                                     <option value="3">03</option>
                                                     <option value="4">04</option>
                                                     <option value="5">05</option>
                                                 </select>
-                                                <span class="title">Provide Your Ratings</span>
-                                                <div class="product-ratingsform-form-wrap">
-                                                    <div class="product-ratingsform-form-icon">
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <div id="product-review-form-rating" class="product-ratingsform-form-icon-fill">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                </div>
+                                                <span class="title">Поставьте оценку</span>
                                             </div>
                                         </div>
                                         <div class="form-input-item mb-0">

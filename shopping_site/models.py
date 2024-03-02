@@ -99,6 +99,7 @@ class comments(models.Model):
     )
     state = models.IntegerField(verbose_name="Оценка", null=True)
     comment = models.TextField(blank=True, verbose_name="Комментарий")
-    
+    username = models.TextField(blank=True, verbose_name="Материал")
+
     def __str__(self):
         return self.good.name

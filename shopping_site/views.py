@@ -8,7 +8,7 @@ from django.views.generic import (
     UpdateView,
 )
 from django.shortcuts import get_object_or_404
-from .models import goods
+from .models import goods, comments
 from django.urls import reverse, reverse_lazy
 from django.conf import settings
 from django.core.mail import send_mail
@@ -35,6 +35,21 @@ class Product_details(DetailView):
 
     def get_object(self, queryset=None):
         return get_object_or_404(goods.objects, slug=self.kwargs[self.slug_url_kwarg])
+
+    def post(self, request, *args, **kwargs):
+        user = request.POST.get("user")
+        username = request.POST.get("username")
+        comment = request.POST.get("comment")
+        state = request.POST.get("state")
+        product = request.POST.get("product")
+        comments.objects.create(
+            state=state,
+            comment=comment,
+            good_id=product,
+            user_id=user,
+            username=username,
+        )
+        return redirect("product", self.kwargs.get("product_slug"))
 
 
 class Shop(ListView):
