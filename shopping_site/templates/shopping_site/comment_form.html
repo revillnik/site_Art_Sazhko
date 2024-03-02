@@ -1,0 +1,29 @@
+{% extends 'shopping_site/product_details.html' %}               
+{% block form_comment %}			
+								<div class="col-lg-7">
+                            <div class="nav product-details-nav" id="product-details-nav-tab" role="tablist">
+                                <p class="nav-link active" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="text" role="tab" aria-controls="review" aria-selected="true">Review</p>
+                            </div>
+                            <div class="tab-content" id="product-details-nav-tabContent">
+                                <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+											<!--== Start Reviews Content Item ==-->
+                                    <div class="product-review-item mb-0">
+                                        <div class="product-review-top">
+                                            <div class="product-review-content">
+                                                <span class="product-review-name">Имя</span>
+                                                <div class="product-review-icon">
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="desc">Текст отзыва</p>
+                                    </div>
+                                    <!--== End Reviews Content Item ==-->
+                                </div>
+                            </div>
+                        </div>
+{% endblock %}

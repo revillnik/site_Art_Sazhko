@@ -1,5 +1,6 @@
 {% extends 'shopping_site/base.html' %}
 {% load static %}
+{% load shopping_site_tags %}
 {% block content %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
@@ -55,7 +56,104 @@
                             </div>
                         </div>
                     </div>
+						   <div class="row">
+                        <div class="col-lg-7">
+									{% if product.comment_good.all %}
+                            <div class="nav product-details-nav" id="product-details-nav-tab" role="tablist">
+                                <p class="nav-link active" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="text" role="tab" aria-controls="review" aria-selected="true">Отзывы</p>
+                            </div>
+                            <div class="tab-content" id="product-details-nav-tabContent">
+                                <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+											<!--== Start Reviews Content Item ==-->
+											{% for item in product.comment_good.all %}
+                                    <div class="product-review-item mb-0">
+                                        <div class="product-review-top">
+                                            <div class="product-review-content">
+                                                <span class="product-review-name">{{item.user}}</span>
+                                                <div class="product-review-icon">
+																	{% state_comment item.state as states %}
+																	{% for item in states %}
+																	{% if item != 0 %}
+                                                    <i class="fa fa-star"></i>
+																	{% else %}
+                                                    <i class="fa fa-star-o"></i>
+																	{% endif %}
+																	{% endfor %}
+                                                </div>
+															
+                                            </div>
+                                        </div>
+                                        <p class="desc">{{item.comment}}</p>
+                                    </div>
+                                    <!--== End Reviews Content Item ==-->
+												<p></p>
+											{% endfor %}
+                                </div>
+                            </div>
+									{% else %}
+									<div class="nav product-details-nav" id="product-details-nav-tab" role="tablist">
+                                <p class="nav-link active" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="text" role="tab" aria-controls="review" aria-selected="true">Отзывы</p>
+                            </div>
+									 <!--== Start Reviews Content Item ==-->
+									       <div class="product-review-item mb-0">
+                                        <div class="product-review-top" style="justify-content: center; margin-bottom:0px">
+                                            <div class="product-review-content">
+                                                <span class="product-review-name" style="font-size: 22px;">Отзывов нет</span>
+                                            </div>
+                                        </div>
+                                    </div>
+												 <!--== End Reviews Content Item ==-->
+									{% endif %}
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="product-reviews-form-wrap">
+                                <h4 class="product-form-title">Оставьте комментарий</h4>
+                                <div class="product-reviews-form">
+                                    <form action="#">
+													 <div class="form-input-item">
+                                            <input class="form-control" type="text" placeholder="Пользователь">
+                                        </div>
+                                        <div class="form-input-item">
+                                            <textarea class="form-control" placeholder="Текст комментария"></textarea>
+                                        </div>
+                                        <div class="form-input-item">
+                                            <div class="form-ratings-item">
+                                                <select id="product-review-form-rating-select" class="select-ratings">
+                                                    <option value="1">01</option>
+                                                    <option value="2">02</option>
+                                                    <option value="3">03</option>
+                                                    <option value="4">04</option>
+                                                    <option value="5">05</option>
+                                                </select>
+                                                <span class="title">Provide Your Ratings</span>
+                                                <div class="product-ratingsform-form-wrap">
+                                                    <div class="product-ratingsform-form-icon">
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                    </div>
+                                                    <div id="product-review-form-rating" class="product-ratingsform-form-icon-fill">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-input-item mb-0">
+                                            <button type="submit" class="btn">SUBMIT</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>	
+					</div>	
 					</section>
             <!--== End Product Details Area Wrapper ==-->
 {% endblock %}
