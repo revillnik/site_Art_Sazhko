@@ -17,6 +17,7 @@ from django.core.paginator import Paginator
 from .forms import RegisterUserForm, LoginUserForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
+from django.core.exceptions import ValidationError
 
 
 class SiteHome(ListView):
@@ -37,6 +38,9 @@ class Product_details(DetailView):
         return get_object_or_404(goods.objects, slug=self.kwargs[self.slug_url_kwarg])
 
     def post(self, request, *args, **kwargs):
+        if request.POST.get("comment_delete_pk"):
+            pk_delete = request.POST.get("comment_delete_pk")
+            comments.objects.filter(pk=pk_delete).delete()
         user = request.POST.get("user")
         username = request.POST.get("username")
         comment = request.POST.get("comment")
@@ -49,8 +53,6 @@ class Product_details(DetailView):
             user_id=user,
             username=username,
         )
-        if request.POST.get("delete_buttom"):
-           
         return redirect("product", self.kwargs.get("product_slug"))
 
 

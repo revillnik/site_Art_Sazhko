@@ -83,11 +83,13 @@
                                             </div>
                                         </div>
                                         <p style="word-break:break-all;" class="desc">{{item.comment}}</p>
-													 <form action="#" method="post">
+													 {% if user == item.user %}
+													 <form method="post">
 														{% csrf_token %}
-													 <input class="form-control" type="hidden" placeholder="Пользователь" name="product"  value={{product.id}}>
- 													 <button type="submit" name='delete_buttom'>&times</button>
+													 <input class="form-control" type="hidden" name="comment_delete_pk" value={{item.pk}}>											 
+ 													 <button type="submit" onclick="alert('Подтвердите удаление комментария')" style="border: 2px solid #ff6565; border-radius: 10px; background: #fff; color:; font-size:13px;" >Удалить</button>
  													 </form>
+													 {% endif %}
                                     </div>
                                     <!--== End Reviews Content Item ==-->
 												<p></p>
@@ -136,9 +138,15 @@
                                                 <span class="title">Поставьте оценку</span>
                                             </div>
                                         </div>
+													{% if user.is_authenticated  %}							
                                         <div class="form-input-item mb-0">
                                             <button type="submit" class="btn">SUBMIT</button>
                                         </div>
+													{% else %}
+	                                    <div class="form-input-item mb-0">
+                                            <span class="btn" style="padding-left: 32px;"><a href="{% url 'login' %}">Login</a></span>
+                                        </div>
+													 {% endif %}
                                     </form>
                                 </div>
                             </div>

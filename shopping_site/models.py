@@ -104,8 +104,8 @@ class comments(models.Model):
         null=True,
         validators=[MaxValueValidator(5), MinValueValidator(0)],
     )
-    comment = models.TextField(blank=True, verbose_name="Комментарий")
-    username = models.TextField(blank=True, verbose_name="Материал")
+    comment = models.TextField(blank=True, verbose_name="Комментарий", null=True)
+    username = models.TextField(blank=True, verbose_name="Материал", null=True)
 
     def __str__(self):
         return self.good.name
