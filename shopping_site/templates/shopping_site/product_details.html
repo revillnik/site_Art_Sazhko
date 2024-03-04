@@ -80,10 +80,14 @@
 																	{% endif %}
 																	{% endfor %}
                                                 </div>
-															
                                             </div>
                                         </div>
                                         <p style="word-break:break-all;" class="desc">{{item.comment}}</p>
+													 <form action="#" method="post">
+														{% csrf_token %}
+													 <input class="form-control" type="hidden" placeholder="Пользователь" name="product"  value={{product.id}}>
+ 													 <button type="submit" name='delete_buttom'>&times</button>
+ 													 </form>
                                     </div>
                                     <!--== End Reviews Content Item ==-->
 												<p></p>

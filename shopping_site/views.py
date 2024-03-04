@@ -49,6 +49,8 @@ class Product_details(DetailView):
             user_id=user,
             username=username,
         )
+        if request.POST.get("delete_buttom"):
+           
         return redirect("product", self.kwargs.get("product_slug"))
 
 
