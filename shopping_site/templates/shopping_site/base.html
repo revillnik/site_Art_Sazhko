@@ -69,7 +69,7 @@
 							   <div class="header-action justify-content-end">
 								{% if user.is_authenticated %}
 									<ul class="main-nav justify-content-start">
-										<li><a class='title-text' href="#profile">{{ user.get_username }}</a></li>
+										<li><a class='title-text' href="{% url 'profile' user.id %}">{{ user.get_username }}</a></li>
 										<li><a class='title-text' href="{% url 'logout' %}">Logout </a></li>
 									</ul>	
 								{% else %}
