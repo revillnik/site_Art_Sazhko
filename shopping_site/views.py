@@ -14,10 +14,6 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.core.paginator import Paginator
-from .forms import RegisterUserForm, LoginUserForm, ProfileUserForm
-from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib import messages
-from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
 
 
@@ -164,25 +160,3 @@ def contact_with_us(request):
         )
     return redirect(request.META["HTTP_REFERER"], permanent=True)
 
-
-class RegisterUser(CreateView):
-    form_class = RegisterUserForm
-    template_name = "shopping_site/register.html"
-    success_url = "login"
-
-
-class LoginUser(LoginView):
-    form_class = LoginUserForm
-    template_name = "shopping_site/login.html"
-
-    def get_success_url(self):
-        return reverse_lazy("home")
-
-
-class ProfileUser(UpdateView):
-    model = get_user_model()
-    form_class = ProfileUserForm
-    template_name = "shopping_site/profile.html"
-
-    def get_success_url(self):
-        return reverse_lazy("profile", args=(self.request.user.id,))

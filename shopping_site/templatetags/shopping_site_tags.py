@@ -20,6 +20,6 @@ def get_state_comment(state):
             range_state.append(i)
     else:
         range_state.append(0)
-    while len(range_state)< 5:
+    while len(range_state) < 5:
         range_state.append(0)
     return range_state
